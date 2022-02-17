@@ -1,6 +1,11 @@
 const initialState = {
     articles: [],
-    isDataLoaded: false
+    activeArticle: null,
+    articleComments: [],
+    isDataLoaded: false,
+    isCommentLoaded: false,
+    isActiveArticleLoaded: false,
+    activeArticleId: -1
 };
 
 export default initialState;
