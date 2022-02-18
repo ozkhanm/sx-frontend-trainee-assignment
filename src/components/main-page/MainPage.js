@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -6,10 +6,23 @@ import PageHeader from "../page-header/PageHeader";
 import LoadingPage from "../loading-page/LoadingPage";
 
 import {getDate} from "../../utils";
+import {Operation} from "../../reducer/reducer";
+import {ActionCreator} from "../../reducer/action-creator";
 
 const MainPage = (props) => {
-    const {articles, isDataLoaded} = props;
-    
+    const {articles, isDataLoaded, getArticles, changeRefreshStatus} = props;
+
+    useEffect(() => {
+        const refreshInterval = setInterval(() => {
+            changeRefreshStatus(true);
+            getArticles();
+          }, 60000);
+
+        return () => {
+            clearInterval(refreshInterval);
+        };
+    });
+
     const getListArticles = (articles) => {
         return articles.map((it) => {
             const formattedDate = getDate(it.time);
@@ -50,4 +63,13 @@ const mapStateToProps = (state) => ({
     isDataLoaded: state.isDataLoaded
 });
 
-export default connect(mapStateToProps)(MainPage);
+const mapDispatchToProps = (dispatch) => ({
+    getArticles() {
+        dispatch(Operation.getArticles());
+    },
+    changeRefreshStatus(status) {
+        dispatch(ActionCreator.changeRefreshStatus(status));
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

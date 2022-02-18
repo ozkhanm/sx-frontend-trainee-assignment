@@ -16,8 +16,8 @@ const Operation = {
             const comments = await getCommentsTree(article);
 
             dispatch(ActionCreator.getActiveArticle(article));
-            dispatch(ActionCreator.changeActiveArticleLoadingStatus(true));
             dispatch(ActionCreator.getArticleComments(comments));
+            dispatch(ActionCreator.changeActiveArticleLoadingStatus(true));
             dispatch(ActionCreator.changeCommentsLoadingStatus(true));
         } else {
             dispatch(ActionCreator.getActiveArticle(-1));
@@ -60,6 +60,16 @@ const reducer = (state = initialState, action) => {
         case ActionType.CHANGE_ACTIVE_ARTICLE_LOADING_STATUS:
             return Object.assign({}, state, {
                 isActiveArticleLoaded: action.payload
+            });
+
+        case ActionType.DROP_ACTIVE_ARTICLE:
+            return Object.assign({}, state, {
+                activeArticle: null
+            });
+
+        case ActionType.CHANGE_REFRESH_STATUS:
+            return Object.assign({}, state, {
+                refreshStatus: action.payload
             });
     }
 

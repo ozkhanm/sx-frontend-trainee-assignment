@@ -5,7 +5,8 @@ const initialState = {
     isDataLoaded: false,
     isCommentLoaded: false,
     isActiveArticleLoaded: false,
-    activeArticleId: -1
+    activeArticleId: -1,
+    refreshStatus: false
 };
 
 export default initialState;

@@ -352,6 +352,8 @@
 
   .container {
     padding: 0 25%;
+    margin-top: 100px;
+    margin-bottom: 100px;
   }
 
   .item {
@@ -418,14 +420,66 @@
   }
 
   .header {
+    position: fixed;
+    left: 25%;
+    top: 0%;
+
+    margin: 0 auto;
+    width: 50%;
+    padding-top: 25px;
+    padding-bottom: 20px;
+
     font-size: 36px;
     text-align: center;
     font-weight: bold;
+    color: #000;
 
-    margin: 0 auto;
-    margin-bottom: 20px;
-    margin-top: 25px;
-    width: 50%;
+    background-color: white; 
+    border-bottom: 2px solid black;
+
+    text-decoration: none;
+    cursor: default;
+  }
+
+  .header-controls {
+    position: fixed;
+    top: 35px;
+    left: 27%;
+    z-index: 2;
+    
+    display: flex;
+    justify-content: space-between;
+    width: 45%;
+  }
+
+  .header-controls-button {
+    display: block;
+    width: 30px;
+    height: 30px;
+
+    cursor: pointer;
+  }
+
+  .header-controls-return-button {
+    background: url("https://img.icons8.com/ios-glyphs/30/000000/home.png") no-repeat;
+  }
+
+  .header-controls-refresh-button {
+    background: url("https://img.icons8.com/ios-glyphs/30/000000/refresh--v1.png") no-repeat;
+  }
+
+  .header-controls-refresh-button-animation {
+    animation: refresh-button 2s infinite linear;
+  }
+
+  @keyframes refresh-button {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   .list {
@@ -435,9 +489,13 @@
   .item-container {
     margin: 0 25%;
     padding: 0 1%;
+    margin-top: 87px;
+    margin-bottom: 70px;
 
     border: 2px solid black;
     border-radius: 20px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
   }
 
   .item-container h1 {
@@ -470,6 +528,8 @@
 
   .comment-item {
     margin: 0;
+
+    word-wrap: break-word;
   }
 
   .comment-item-block {
@@ -480,10 +540,6 @@
 
     border: 2px solid #e7e7e7;
     border-radius: 15px;
-  }
-
-  .comment-item-block:last-child {
-    margin-bottom: 0;
   }
 
   .comment-show-more-block {
@@ -509,6 +565,7 @@
 
   .comment-item-header-block {
     display: flex;
+    flex-wrap: wrap;
     margin-bottom: 10px;
 
     color: #9f9f9f;

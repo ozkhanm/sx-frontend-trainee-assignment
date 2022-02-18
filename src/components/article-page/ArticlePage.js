@@ -7,14 +7,17 @@ import Comments from "../comments/Comments";
 import ErrorPage from "../error-page/ErrorPage";
 
 import {getDate} from "../../utils";
+import {ActionCreator} from "../../reducer/action-creator";
 
 const ArticlePage = (props) => {
-    const {activeArticle, articleComments, isCommentLoaded, isActiveArticleLoaded} = props;
+    const {activeArticle, isActiveArticleLoaded, changeActiveArticleId} = props;
 
-    if (isActiveArticleLoaded && isCommentLoaded) {
+    if (isActiveArticleLoaded) {
+        changeActiveArticleId(activeArticle.id);
+
         return (
             <React.Fragment>
-                <PageHeader/>
+                <PageHeader activeArticle={activeArticle}/>
                 <div className="item-container">
                     <h1>{activeArticle.title} {activeArticle.url ? <a href={activeArticle.url} className="article-data">({activeArticle.url})</a> : ``}</h1>
                     <div className="article-data-block">
@@ -23,7 +26,7 @@ const ArticlePage = (props) => {
                         <p className="article-data">comments: {activeArticle.descendants}</p>
                     </div>
                     <hr/>
-                    <Comments articleComments={articleComments}/>
+                    <Comments/>
                 </div>
             </React.Fragment>
         );
@@ -36,9 +39,13 @@ const ArticlePage = (props) => {
 
 const mapStateToProps = (state) => ({
     activeArticle: state.activeArticle,
-    articleComments: state.articleComments,
-    isCommentLoaded: state.isCommentLoaded,
     isActiveArticleLoaded: state.isActiveArticleLoaded
 });
 
-export default connect(mapStateToProps)(ArticlePage);
+const mapDispatchToProps = (dispatch) => ({
+    changeActiveArticleId(articleId) {
+        dispatch(ActionCreator.changeActiveArticleId(articleId));
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);

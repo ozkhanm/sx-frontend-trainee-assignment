@@ -4,7 +4,6 @@ import {getDate, createMarkup} from "../../utils";
 
 const Subcomment = (props) => {
     const {comments} = props;
-    console.log(comments);
 
     const getSubcomments = (comments) => {
         return comments.map((it) => {
@@ -17,7 +16,7 @@ const Subcomment = (props) => {
                                     <p className="comment-item">by: {it.by}</p>
                                     <p className="comment-item">time: {getDate(it.time)}</p>
                                 </div>
-                                <p className="comment-item" dangerouslySetInnerHTML={createMarkup(it.text)}></p>
+                                <p className="comment-item-text" dangerouslySetInnerHTML={createMarkup(it.text)}></p>
                             </div>
                             {getSubcomments(it.kids)}
                         </div>
@@ -34,7 +33,7 @@ const Subcomment = (props) => {
                                     <p className="comment-item">by: {it.by}</p>
                                     <p className="comment-item">time: {getDate(it.time)}</p>
                                 </div>
-                                <p className="comment-item" dangerouslySetInnerHTML={createMarkup(it.text)}></p>
+                                <p className="comment-item-text" dangerouslySetInnerHTML={createMarkup(it.text)}></p>
                             </div>
                         </div>
                     );

@@ -5,7 +5,9 @@ const ActionType = {
     GET_ARTICLE_COMMENTS: `GET_ARTICLE_COMMENTS`,
     CHANGE_COMMENTS_LOADING_STATUS: `CHANGE_COMMENTS_LOADING_STATUS`,
     GET_ACTIVE_ARTICLE: `GET_ACTIVE_ARTICLE`,
-    CHANGE_ACTIVE_ARTICLE_LOADING_STATUS: `CHANGE_ACTIVE_ARTICLE_LOADING_STATUS`
+    CHANGE_ACTIVE_ARTICLE_LOADING_STATUS: `CHANGE_ACTIVE_ARTICLE_LOADING_STATUS`,
+    DROP_ACTIVE_ARTICLE: `DROP_ACTIVE_ARTICLE`,
+    CHANGE_REFRESH_STATUS: `CHANGE_REFRESH_STATUS`
 };
 
 const ActionCreator = {
@@ -35,6 +37,13 @@ const ActionCreator = {
     }),
     changeActiveArticleLoadingStatus: (status) => ({
         type: ActionType.CHANGE_ACTIVE_ARTICLE_LOADING_STATUS,
+        payload: status
+    }),
+    dropActiveArticle: () => ({
+        type: ActionType.DROP_ACTIVE_ARTICLE
+    }),
+    changeRefreshStatus: (status) => ({
+        type: ActionType.CHANGE_REFRESH_STATUS,
         payload: status
     })
 };

@@ -41,7 +41,7 @@ const Comment = (props) => {
                         <p className="comment-item">by: {comment.by}</p>
                         <p className="comment-item">at: {getDate(comment.time)}</p>
                     </div>
-                    <p className="comment-item" dangerouslySetInnerHTML={createMarkup(comment.text)}></p>
+                    <p className="comment-item-text" dangerouslySetInnerHTML={createMarkup(comment.text)}></p>
                 </div>
                 {getButtonElement(comment)}
                 {getSubcommentElement(comment.id)}
@@ -57,7 +57,7 @@ const Comment = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    articleComments: state.articleComments
+    articleComments: state.articleComments,
 });
 
 export default connect(mapStateToProps)(Comment);
