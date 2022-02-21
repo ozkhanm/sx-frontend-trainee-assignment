@@ -6,7 +6,7 @@ import PageHeader from "../page-header/PageHeader";
 const ErrorPage = () => {
     return (
         <React.Fragment>
-            <PageHeader/>
+            <PageHeader page={`ARTICLE_PAGE`}/>
             <div className="container">
                 <div className="load">
                     <h1>Article does not exist</h1>

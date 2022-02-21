@@ -25,27 +25,31 @@ const MainPage = (props) => {
 
     const getListArticles = (articles) => {
         return articles.map((it) => {
-            const formattedDate = getDate(it.time);
-            const additionalInfo = `by: ${it.by} | at: ${formattedDate}`;
+            if (it !== null) {
+                const formattedDate = getDate(it.time);
+                const additionalInfo = `by: ${it.by} | at: ${formattedDate}`;
 
-            return (
-                <li key={it.id} className="item">                                    
-                    <div className="content-block">
-                        <Link to={`/${it.id}`} className="item-link">{it.title}</Link>
-                        <div>
-                            <p className="additional-content-block">{additionalInfo}</p>
+                return (
+                    <li key={it.id} className="item">                                    
+                        <div className="content-block">
+                            <Link to={`/${it.id}`} className="item-link">{it.title}</Link>
+                            <div>
+                                <p className="additional-content-block">{additionalInfo}</p>
+                            </div>
                         </div>
-                    </div>
-                    <p className="score">{it.score}</p>
-                </li>
-            );
+                        <p className="score">{it.score}</p>
+                    </li>
+                );
+            } else {
+                return;
+            }
         });
     };
 
     if (isDataLoaded) {
         return (
             <React.Fragment>
-                <PageHeader/>
+                <PageHeader page={`MAIN_PAGE`}/>
                 <div className="container">
                     <ul className="list">
                         {getListArticles(articles)}
@@ -72,4 +76,5 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
+export {MainPage};
 export default connect(mapStateToProps, mapDispatchToProps)(MainPage);

@@ -4,13 +4,11 @@ import {Link} from "react-router-dom";
 
 import {ActionCreator} from "../../reducer/action-creator";
 import {Operation} from "../../reducer/reducer";
-import history from "../../history";
 
 const PageHeader = (props) => {
     const {changeActiveArticleLoadingStatus, dropActiveArticle,
         getArticles, changeCommentsLoadingStatus, activeArticleId, getActiveArticle,
-        isCommentLoaded, refreshStatus, changeRefreshStatus} = props;
-    const location = history.location.pathname;
+        isCommentLoaded, refreshStatus, changeRefreshStatus, page} = props;
     const [refreshButtonToggled, setRefreshButtonToggleStatus] = useState(false);
 
     setTimeout(() => {
@@ -19,7 +17,7 @@ const PageHeader = (props) => {
     }, 3000);
 
     const renderHeaderControls = () => {
-        if (location === `/`) {
+        if (page === `MAIN_PAGE`) {
             return (
                 <div className="header-controls">
                     <a className={`header-controls-button header-controls-refresh-button ${(refreshButtonToggled || refreshStatus) ? `header-controls-refresh-button-animation` : ``}`} onClick={() => {
@@ -82,4 +80,5 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
+export {PageHeader};
 export default connect(mapStateToProps, mapDispatchToProps)(PageHeader);

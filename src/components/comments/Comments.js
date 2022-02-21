@@ -51,4 +51,5 @@ const mapDispatchToProps = (dispatch) => ({
     },
 });
 
+export {Comments};
 export default connect(mapStateToProps, mapDispatchToProps)(Comments);

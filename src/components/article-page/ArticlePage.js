@@ -17,7 +17,7 @@ const ArticlePage = (props) => {
 
         return (
             <React.Fragment>
-                <PageHeader activeArticle={activeArticle}/>
+                <PageHeader page={`ARTICLE_PAGE`}/>
                 <div className="item-container">
                     <h1>{activeArticle.title} {activeArticle.url ? <a href={activeArticle.url} className="article-data">({activeArticle.url})</a> : ``}</h1>
                     <div className="article-data-block">
@@ -48,4 +48,5 @@ const mapDispatchToProps = (dispatch) => ({
     }
 });
 
+export {ArticlePage};
 export default connect(mapStateToProps, mapDispatchToProps)(ArticlePage);
